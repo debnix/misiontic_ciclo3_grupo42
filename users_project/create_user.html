@@ -45,24 +45,55 @@
 				<!--Formulario-->
 				<form>
 					<!--Nombre-->
-					<label for="input_nombre" class="form-label">Nombre: </label>
-					<input id="input_nombre" class="form-control" type="text" />
+					<label for="input_nombre" class="form-label">Nombre*: </label>
+					<input
+						id="input_nombre"
+						class="form-control"
+						type="text"
+						placeholder="Pepito"
+						required
+					/>
 					<!--Apellido-->
-					<label for="input_apellido" class="form-label">Apellido: </label>
-					<input id="input_apellido" class="form-control" type="text" />
+					<label for="input_apellido" class="form-label">Apellido*: </label>
+					<input
+						id="input_apellido"
+						class="form-control"
+						type="text"
+						placeholder="Perez"
+						required
+					/>
 					<!--Email-->
-					<label for="input_email" class="form-label">Email: </label>
-					<input id="input_email" class="form-control" type="text" />
+					<label for="input_email" class="form-label">Email*: </label>
+					<input
+						id="input_email"
+						class="form-control"
+						type="email"
+						placeholder="pepito@gmail.com"
+						required
+					/>
 					<!--Fecha nacimiento-->
 					<label for="input_fecha_naci" class="form-label">
-						Fecha nacimiento:
+						Fecha nacimiento*:
 					</label>
-					<input id="input_fecha_naci" class="form-control" type="text" />
+					<input
+						id="input_fecha_naci"
+						class="form-control"
+						type="date"
+						required
+					/>
 					<!--Foto-->
 					<label for="input_foto" class="form-label">Foto: </label>
-					<input id="input_foto" class="form-control" type="text" />
-					<!--Botón de crear-->
-					<button class="btn btn-primary" type="submit">Crear</button>
+					<input
+						id="input_foto"
+						class="form-control"
+						type="text"
+						placeholder="http://url-mi-foto.jpg"
+					/>
+					<!--Ejercicio: centrar el botón-->
+					<div class="container-center">
+						<!--Botón de crear-->
+						<button class="btn btn-primary" type="submit">Crear</button>
+					</div>
 				</form>
 			</section>
 		</main>
