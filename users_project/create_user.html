@@ -27,23 +27,44 @@
 			integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
 			crossorigin="anonymous"
 		></script>
+		<!--Cargar hojas de estilo-->
+		<link rel="stylesheet" href="./styles/create_user.css" />
 	</head>
 	<body>
 		<!--Cabecera-->
 		<header>
 			<nav class="navbar navbar-light bg-primary">
-				<h2 class="titulo">Usuarios registrados</h2>
+				<h2 class="titulo">Crear usuario</h2>
 				<!-- Navbar content -->
 			</nav>
 		</header>
 
 		<!--Contenido-->
 		<main>
-			<!--Formulario-->
-			<form>
-				<label for="input_nombre" class="form-label">Nombre: </label>
-				<input id="input_nombre" class="form-control" type="text" />
-			</form>
+			<section id="section-form">
+				<!--Formulario-->
+				<form>
+					<!--Nombre-->
+					<label for="input_nombre" class="form-label">Nombre: </label>
+					<input id="input_nombre" class="form-control" type="text" />
+					<!--Apellido-->
+					<label for="input_apellido" class="form-label">Apellido: </label>
+					<input id="input_apellido" class="form-control" type="text" />
+					<!--Email-->
+					<label for="input_email" class="form-label">Email: </label>
+					<input id="input_email" class="form-control" type="text" />
+					<!--Fecha nacimiento-->
+					<label for="input_fecha_naci" class="form-label">
+						Fecha nacimiento:
+					</label>
+					<input id="input_fecha_naci" class="form-control" type="text" />
+					<!--Foto-->
+					<label for="input_foto" class="form-label">Foto: </label>
+					<input id="input_foto" class="form-control" type="text" />
+					<!--Botón de crear-->
+					<button class="btn btn-primary" type="submit">Crear</button>
+				</form>
+			</section>
 		</main>
 	</body>
 </html>
