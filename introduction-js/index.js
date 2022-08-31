@@ -1,57 +1,37 @@
+// Referenciar div
+const div = document.getElementById('app')
+// Adicionar html al elemento
+div.innerHTML = "<h2>Hola mundo desde js</h2>"
 
-/**
- * VARIABLES
- */
+div.innerHTML += "<h3>Grupo 42</h3>"
+div.innerHTML += `
+  <ul>
+    <li>item</li
+  </ul>
+`
 
-const numero = 5
-let mensaje = "Hola mundo"
-mensaje = "Hola mundo desde misión tic"
-var suma = 5 + 10
-let arreglo = [5, 10, 20, 40, 50]
+// Usuarios
+const usuarios = [
+  { nombre: "Valeria", apellido: "Sanchez" },
+  { nombre: "Cristian", apellido: "Martinez" },
+  { nombre: "Andres", apellido: "Quintero" },
+  { nombre: "Wilmar", apellido: "Muñoz" },
+  { nombre: "Dario", apellido: "Peña" },
+  { nombre: "Sara", apellido: "Quintana" },
+  { nombre: "Juan", apellido: "hernandez" }
+]
 
-for (let i = 0; i < arreglo.length; i++) {
-  let e = arreglo[i]
-  //Imprimir en consola
-  console.log(e)
+// Referenciar tabla
+const tabla = document.getElementById('tabla')
+tabla.innerHTML += `<tbody>`
+// Iterar usuarios
+for (let i = 0; i < usuarios.length; i++) {
+  // Adicionar info a la tabla
+  tabla.innerHTML += `
+  <tr>
+    <td>${usuarios[i].nombre}</td>
+    <td>${usuarios[i].apellido}</td>
+  </tr>
+  `
 }
-
-//Objeto
-
-let persona = {
-  nombre: "Andrea",
-  apellido: "Medina",
-  edad: 28,
-  telefono: "3123456789"
-}
-console.log(persona)
-//Acceder a valores del objeto
-let nombre = persona.nombre
-console.log("nombre: " + nombre)
-let apellido = persona["apellido"]
-console.log("apellido: " + apellido)
-
-
-/**
- * Funciones
- */
-function saludar () {
-  console.log("Hola mundo desde una función")
-}
-
-saludar()
-
-function multiplicar (n1, n2) {
-  return n1 * n2
-}
-
-let result = multiplicar(5, 10)
-console.log("Resultado: " + result)
-
-function mostrar_info (persona) {
-  //Obtener los valores del objeto
-  let values = Object.values(persona)
-  console.log(values)
-  for (let i = 0; i < values.length; i++) {
-    console.log(values[i])
-  }
-}
+tabla.innerHTML += `</tbody>`
