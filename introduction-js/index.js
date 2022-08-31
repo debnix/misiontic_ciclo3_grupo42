@@ -6,7 +6,7 @@ div.innerHTML = "<h2>Hola mundo desde js</h2>"
 div.innerHTML += "<h3>Grupo 42</h3>"
 div.innerHTML += `
   <ul>
-    <li>item</li
+    <li>item</li>
   </ul>
 `
 
