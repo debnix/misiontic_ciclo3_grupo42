@@ -1,0 +1,16 @@
+#section-table {
+	padding: 40px;
+}
+
+#tabla,
+thead {
+	width: 100%;
+	text-align: center;
+}
+
+#tabla,
+tr,
+th,
+td {
+	border: 1px solid black;
+}

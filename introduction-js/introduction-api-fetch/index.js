@@ -13,21 +13,22 @@ async function obtener_usuarios () {
 // Mostrar los usuarios en la tabla del html
 function mostrar_usuarios (usuarios) {
   const tabla = document.getElementById('tabla')
-  tabla.innerHTML += `<tbody>`
+  let tbody = ``
   // iterar los usuarios
   for (let i = 0; i < usuarios.length; i++) {
-    tabla.innerHTML += `
+    tbody += `
       <tr>
-        <td>${usuarios[i].id}<td>
-        <td>${usuarios[i].name}<td>
-        <td>${usuarios[i].username}<td>
-        <td>${usuarios[i].email}<td>
-        <td>${usuarios[i].address.street}<td>
-        <td>${usuarios[i].website}<td>
-        <td>${usuarios[i].phone}<td>
+        <td>${usuarios[i].id}</td>
+        <td>${usuarios[i].name}</td>
+        <td>${usuarios[i].username}</td>
+        <td>${usuarios[i].email}</td>
+        <td>${usuarios[i].address.street}</td>
+        <td>${usuarios[i].website}</td>
+        <td>${usuarios[i].phone}</td>
       </tr>
     `
   }
+  tabla.innerHTML += tbody
 }
 
 async function main () {
