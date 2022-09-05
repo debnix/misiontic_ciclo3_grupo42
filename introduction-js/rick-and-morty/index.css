@@ -10,3 +10,12 @@
 .card img {
 	height: 100%;
 }
+
+.body-card {
+	width: 55%;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
