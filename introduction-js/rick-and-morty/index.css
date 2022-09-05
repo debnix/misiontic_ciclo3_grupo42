@@ -4,6 +4,7 @@
 	height: 190px;
 	border-radius: 10px;
 	overflow: hidden;
+	display: flex;
 }
 
 .card img {
