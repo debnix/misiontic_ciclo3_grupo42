@@ -1,10 +1,31 @@
+body {
+	margin: 0;
+}
+main {
+	background: #202328;
+}
+header {
+	height: 65vh;
+}
+header img {
+	height: 100%;
+	width: 100%;
+}
+
+#section-cards {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
 .card {
 	border: 1px solid black;
-	width: 500px;
-	height: 190px;
+	width: 550px;
+	height: 210px;
 	border-radius: 10px;
 	overflow: hidden;
 	display: flex;
+	margin: 20px;
+	box-shadow: 0 0px 10px 0px rgb(8, 195, 224);
 }
 
 .card img {
@@ -18,4 +39,11 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background: #3b3e43;
+	color: white;
+}
+
+.body-card:hover {
+	background: rgb(234, 132, 7);
+	cursor: pointer;
 }
