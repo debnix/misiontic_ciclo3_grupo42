@@ -15,13 +15,13 @@ function mostrar_personajes (personajes) {
     // template string
     cards += `
       <article class="card">
-				<img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" />
+				<img src="${personajes[i].image}" />
 				<div class="body-card">
-						<h2>Rick Sanchez</h2>
-						<span>Alive - Human</span>
-						<span>Gender: Male</span>
-						<span>Location: Earth</span>
-						<span>Origin: Earth</span>
+						<h2>${personajes[i].name}</h2>
+						<span>${personajes[i].status} - ${personajes[i].species}</span>
+						<span>Gender: ${personajes[i].gender}</span>
+						<span>Location: ${personajes[i].location.name}</span>
+						<span>Origin: ${personajes[i].origin.name}</span>
 				</div>
 			</article>
     `
