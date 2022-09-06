@@ -17,3 +17,6 @@ CREATE TABLE users(
     fecha_nacimiento DATE NOT NULL,
     foto TEXT NOT NULL
 );
+
+# Visualizar estructura de una tabla
+DESCRIBE users;
