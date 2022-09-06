@@ -2,7 +2,7 @@
 
 ### Tools
 
-- For windows install (if not installed):
+- For windows install visual studio (if not installed):
 - - https://visualstudio.microsoft.com/es/downloads/
 - For windows Download and install:
 - - https://dev.mysql.com/downloads/windows/installer/8.0.html

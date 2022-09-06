@@ -12,3 +12,8 @@ This project contains all the topics and/or projects worked on during cycle 3
 - Introduction to git
 - Introduction to Html and Css
 - Instroduction to Java Script
+- - introduction-api-fetch
+- - rick-and-morty
+- Introduction to Hibernate
+- Introduction to Mysql
+- Project users_project (Full Stack)
