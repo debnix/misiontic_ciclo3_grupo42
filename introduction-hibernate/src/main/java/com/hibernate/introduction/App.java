@@ -1,5 +1,7 @@
 package com.hibernate.introduction;
 
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -23,8 +25,17 @@ public class App {
 
         // Preparar la sesión para realizar transacciones
         session.beginTransaction();
-
         // Realizar transacciones...
+        try {
+            // Crear objeto Persona
+            Persona objPersona = new Persona("Sara", "Camacho", "sara@gmail.com", new Date(), "http://fake-photo");
+            // Preparar el objeto
+            session.persist(objPersona);
+            // Guardar en la BD
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Cerrar sesión
         session.close();
