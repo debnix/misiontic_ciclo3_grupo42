@@ -1,13 +1,25 @@
 package com.hibernate.introduction.model;
 
+import java.util.Date;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+// Indicar que la clase Persona representa una entidad de la BD
+@Entity
+// Indicar la entidad/tabla que representa la clase Persona
+@Table(name = "users")
 public class Persona {
 
   // ATRIBUTOS
+  @Id
   private int id;
   private String nombre;
   private String apellido;
   private String email;
-  private String fecha_nacimiento;
+  // @Column(name = "fecha_nacimiento")
+  private Date fecha_nacimiento;
   private String foto;
 
   // CONSTRUCTORES
@@ -15,7 +27,7 @@ public class Persona {
   public Persona() {
   }
 
-  public Persona(String nombre, String apellido, String email, String fecha_nacimiento, String foto) {
+  public Persona(String nombre, String apellido, String email, Date fecha_nacimiento, String foto) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
@@ -40,7 +52,7 @@ public class Persona {
     return email;
   }
 
-  public String getFecha_nacimiento() {
+  public Date getFecha_nacimiento() {
     return fecha_nacimiento;
   }
 
@@ -61,7 +73,7 @@ public class Persona {
     this.email = email;
   }
 
-  public void setFecha_nacimiento(String fecha_nacimiento) {
+  public void setFecha_nacimiento(Date fecha_nacimiento) {
     this.fecha_nacimiento = fecha_nacimiento;
   }
 
