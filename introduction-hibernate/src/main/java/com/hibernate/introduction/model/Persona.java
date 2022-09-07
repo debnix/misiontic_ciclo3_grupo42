@@ -35,6 +35,19 @@ public class Persona {
     this.foto = foto;
   }
 
+  @Override
+  public String toString() {
+    String info = "-------------------------------\n";
+    info += "Id: " + id;
+    info += "\nNombre: " + nombre;
+    info += "\nApellido: " + apellido;
+    info += "\nEmail: " + email;
+    info += "\nFecha nacimiento: " + fecha_nacimiento;
+    info += "\nFoto: " + foto;
+    info += "\n-------------------------------\n";
+    return info;
+  }
+
   // CONSULTORES // GETTERS
   public int getId() {
     return id;

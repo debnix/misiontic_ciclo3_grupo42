@@ -1,6 +1,7 @@
 package com.hibernate.introduction;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,12 +28,33 @@ public class App {
         session.beginTransaction();
         // Realizar transacciones...
         try {
+            /*********
+             * CRUD
+             **********/
+
+            // Create
+
             // Crear objeto Persona
-            Persona objPersona = new Persona("Sara", "Camacho", "sara@gmail.com", new Date(), "http://fake-photo");
-            // Preparar el objeto
-            session.persist(objPersona);
+            /*
+             * Persona objPersona = new Persona("Andrea", "Hernandez", "andrea@gmail.com",
+             * new Date(),
+             * "http://fake-photo");
+             * // Preparar el objeto
+             * session.persist(objPersona);
+             */
+
+            // Read
+            // Persona persona = session.find(Persona.class, 2);
+            // Persona persona = session.byId(Persona.class).load(1);
+            // System.out.println(persona);
+            List<Persona> personas = session.createQuery("from Persona", Persona.class).list();
+            // Iterar lista
+            for (int i = 0; i < personas.size(); i++) {
+                System.out.println(personas.get(i));
+            }
+
             // Guardar en la BD
-            session.getTransaction().commit();
+            // session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
