@@ -8,6 +8,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -98,6 +99,21 @@ public class PersonaController {
       message = "Persona actualizada con éxito";
     } catch (Exception e) {
       e.printStackTrace();
+      message = e.getMessage();
+    }
+    return message;
+  }
+
+  @DeleteMapping
+  public String eliminarPersona(@RequestBody Persona persona) {
+    String message = "";
+    Session session = crearSesion();
+    try {
+      session.remove(persona);
+      session.getTransaction().commit();
+      session.close();
+      message = "Persona eliminada con éxito";
+    } catch (Exception e) {
       message = e.getMessage();
     }
     return message;
