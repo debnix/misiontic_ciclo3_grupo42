@@ -45,7 +45,7 @@ public class PersonaController {
     return create;
   }
 
-  public List<Persona> obtenerPersonas() {
+  public List<String> obtenerPersonas() {
     List<Persona> personas = new ArrayList<>();
     Session session = crearSesion();
     try {
@@ -53,6 +53,15 @@ public class PersonaController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return personas;
+    return objToString(personas);
   }
+
+  public List<String> objToString(List<Persona> personas) {
+    List<String> personasStr = new ArrayList<>();
+    for (int i = 0; i < personas.size(); i++) {
+      personasStr.add(personas.get(i).toString());
+    }
+    return personasStr;
+  }
+
 }

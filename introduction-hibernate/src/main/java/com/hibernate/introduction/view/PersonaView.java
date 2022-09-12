@@ -1,6 +1,7 @@
 package com.hibernate.introduction.view;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -37,7 +38,12 @@ public class PersonaView {
   }
 
   public void mostrarPersonas() {
-
+    List<String> personas = controller.obtenerPersonas();
+    String info = "--------------PERSONAS-------------\n";
+    for (int i = 0; i < personas.size(); i++) {
+      info += personas.get(i);
+    }
+    JOptionPane.showMessageDialog(null, info);
   }
 
   public void buscarPersona() {
