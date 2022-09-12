@@ -2,12 +2,15 @@ package com.hibernate.introduction.controller;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,19 +45,36 @@ public class PersonaController {
   }
 
   /** ACCIONES */
-  public boolean crearPersona(String nombre, String apellido, String email, Calendar fecha_naci, String foto) {
-    boolean create = false;
+
+  @GetMapping
+  public List<Persona> obtenerPersonas() {
+    List<Persona> personas = new ArrayList<>();
     Session session = crearSesion();
     try {
-      Persona persona = new Persona(nombre, apellido, email, fecha_naci, foto);
-      session.persist(persona);
-      session.getTransaction().commit();
-      create = true;
+      personas = session.createQuery("from Persona", Persona.class).list();
       session.close();
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return create;
+    return personas;
+  }
+
+  @PostMapping
+  public String crearPersona(@RequestBody Persona persona) {
+    String message = "";
+
+    Session session = crearSesion();
+    try {
+      session.persist(persona);
+      session.getTransaction().commit();
+      message = "Persona creada con éxito";
+      session.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+      message = e.getMessage();
+    }
+
+    return message;
   }
 
   public String obtenerPersonaXId(int id) {
@@ -68,19 +88,6 @@ public class PersonaController {
       e.printStackTrace();
     }
     return personaStr;
-  }
-
-  @GetMapping
-  public List<Persona> obtenerPersonas() {
-    List<Persona> personas = new ArrayList<>();
-    Session session = crearSesion();
-    try {
-      personas = session.createQuery("from Persona", Persona.class).list();
-      session.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return personas;
   }
 
   public List<String> objToString(List<Persona> personas) {
