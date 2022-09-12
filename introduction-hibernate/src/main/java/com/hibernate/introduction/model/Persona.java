@@ -1,6 +1,6 @@
 package com.hibernate.introduction.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,7 +19,7 @@ public class Persona {
   private String apellido;
   private String email;
   // @Column(name = "fecha_nacimiento")
-  private Date fecha_nacimiento;
+  private Calendar fecha_nacimiento;
   private String foto;
 
   // CONSTRUCTORES
@@ -27,7 +27,7 @@ public class Persona {
   public Persona() {
   }
 
-  public Persona(String nombre, String apellido, String email, Date fecha_nacimiento, String foto) {
+  public Persona(String nombre, String apellido, String email, Calendar fecha_nacimiento, String foto) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
@@ -65,7 +65,7 @@ public class Persona {
     return email;
   }
 
-  public Date getFecha_nacimiento() {
+  public Calendar getFecha_nacimiento() {
     return fecha_nacimiento;
   }
 
@@ -86,7 +86,7 @@ public class Persona {
     this.email = email;
   }
 
-  public void setFecha_nacimiento(Date fecha_nacimiento) {
+  public void setFecha_nacimiento(Calendar fecha_nacimiento) {
     this.fecha_nacimiento = fecha_nacimiento;
   }
 

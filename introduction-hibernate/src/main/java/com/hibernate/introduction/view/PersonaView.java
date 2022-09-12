@@ -1,5 +1,6 @@
 package com.hibernate.introduction.view;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -23,11 +24,7 @@ public class PersonaView {
     String fecha = JOptionPane.showInputDialog(null, "Fecha nacimiento (dd/mm/aaaa): ");
     String foto = JOptionPane.showInputDialog(null, "Url foto: ");
 
-    String[] dateString = fecha.split("/");
-    int year = Integer.parseInt(dateString[2]);
-    int month = Integer.parseInt(dateString[1]);
-    int date = Integer.parseInt(dateString[0]);
-    Date fecha_nacimiento = new Date(year, month, date);
+    Calendar fecha_nacimiento = controller.StringToCalendar(fecha);
     // Crear persona
     boolean create = controller.crearPersona(nombre, apellido, email, fecha_nacimiento, foto);
     if (create) {
@@ -55,7 +52,19 @@ public class PersonaView {
   }
 
   public void actualizarPersona() {
+    // Solicitar datos
+    int id = Integer
+        .parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese el identificador de la persona a actualizar"));
+    String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre");
+    String apellido = JOptionPane.showInputDialog(null, "Ingrese el apellido");
+    String email = JOptionPane.showInputDialog(null, "Ingrese el Email");
+    String fecha = JOptionPane.showInputDialog(null, "Fecha nacimiento (dd/mm/aaaa): ");
+    String foto = JOptionPane.showInputDialog(null, "Url foto: ");
 
+    Calendar fecha_nacimiento = controller.StringToCalendar(fecha);
+    // Crear persona
+    String message = controller.actualizarPersona(id, nombre, apellido, email, fecha_nacimiento, foto);
+    JOptionPane.showMessageDialog(null, message);
   }
 
 }

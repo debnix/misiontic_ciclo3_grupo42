@@ -1,7 +1,7 @@
 package com.hibernate.introduction.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -30,7 +30,7 @@ public class PersonaController {
   }
 
   /** ACCIONES */
-  public boolean crearPersona(String nombre, String apellido, String email, Date fecha_naci, String foto) {
+  public boolean crearPersona(String nombre, String apellido, String email, Calendar fecha_naci, String foto) {
     boolean create = false;
     Session session = crearSesion();
     try {
@@ -65,7 +65,7 @@ public class PersonaController {
     return personasStr;
   }
 
-  public String actualizarPersona(int id, String nombre, String apellido, String email, Date fecha_naci,
+  public String actualizarPersona(int id, String nombre, String apellido, String email, Calendar fecha_naci,
       String foto) {
     String message = "";
     Session session = crearSesion();
@@ -86,6 +86,16 @@ public class PersonaController {
       message = e.getMessage();
     }
     return message;
+  }
+
+  public Calendar StringToCalendar(String fecha) {
+    String[] dateString = fecha.split("/");
+    int year = Integer.parseInt(dateString[2]);
+    int month = Integer.parseInt(dateString[1]) - 1;
+    int date = Integer.parseInt(dateString[0]);
+    Calendar fechaCalendar = Calendar.getInstance();
+    fechaCalendar.set(year, month, date);
+    return fechaCalendar;
   }
 
 }
