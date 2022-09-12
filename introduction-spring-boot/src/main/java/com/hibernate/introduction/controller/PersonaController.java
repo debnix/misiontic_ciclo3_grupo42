@@ -10,8 +10,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hibernate.introduction.model.Persona;
@@ -76,6 +78,31 @@ public class PersonaController {
     return message;
   }
 
+  @PutMapping
+  public String actualizarPersona(@RequestBody Persona persona) {
+    String message = "";
+    Session session = crearSesion();
+    try {
+      /*
+       * Persona persona = session.find(Persona.class, id);
+       * persona.setNombre(nombre);
+       * persona.setApellido(apellido);
+       * persona.setEmail(email);
+       * persona.setFecha_nacimiento(fecha_naci);
+       * persona.setFoto(foto);
+       */
+
+      session.merge(persona);
+      session.getTransaction().commit();
+      session.close();
+      message = "Persona actualizada con éxito";
+    } catch (Exception e) {
+      e.printStackTrace();
+      message = e.getMessage();
+    }
+    return message;
+  }
+
   public String obtenerPersonaXId(int id) {
     String personaStr = "";
     Session session = crearSesion();
@@ -95,29 +122,6 @@ public class PersonaController {
       personasStr.add(personas.get(i).toString());
     }
     return personasStr;
-  }
-
-  public String actualizarPersona(int id, String nombre, String apellido, String email, Calendar fecha_naci,
-      String foto) {
-    String message = "";
-    Session session = crearSesion();
-    try {
-      Persona persona = session.find(Persona.class, id);
-      persona.setNombre(nombre);
-      persona.setApellido(apellido);
-      persona.setEmail(email);
-      persona.setFecha_nacimiento(fecha_naci);
-      persona.setFoto(foto);
-
-      session.merge(persona);
-      session.getTransaction().commit();
-      session.close();
-      message = "Persona actualizada con éxito";
-    } catch (Exception e) {
-      e.printStackTrace();
-      message = e.getMessage();
-    }
-    return message;
   }
 
   public Calendar StringToCalendar(String fecha) {
