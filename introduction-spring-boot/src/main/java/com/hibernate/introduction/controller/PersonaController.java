@@ -62,7 +62,6 @@ public class PersonaController {
   @PostMapping
   public String crearPersona(@RequestBody Persona persona) {
     String message = "";
-
     Session session = crearSesion();
     try {
       session.persist(persona);
