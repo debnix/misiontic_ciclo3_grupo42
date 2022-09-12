@@ -1,7 +1,6 @@
 package com.hibernate.introduction.view;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;

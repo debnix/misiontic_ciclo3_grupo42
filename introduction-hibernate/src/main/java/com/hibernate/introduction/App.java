@@ -11,6 +11,6 @@ public class App {
     public static void main(String[] args) {
         PersonaController controller = new PersonaController();
         PersonaView view = new PersonaView(controller);
-        view.actualizarPersona();
+        view.buscarPersona();
     }
 }
