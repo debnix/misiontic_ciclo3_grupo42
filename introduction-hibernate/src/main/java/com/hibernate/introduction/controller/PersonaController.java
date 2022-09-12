@@ -50,6 +50,7 @@ public class PersonaController {
     Session session = crearSesion();
     try {
       personas = session.createQuery("from Persona", Persona.class).list();
+      session.close();
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -62,6 +63,29 @@ public class PersonaController {
       personasStr.add(personas.get(i).toString());
     }
     return personasStr;
+  }
+
+  public String actualizarPersona(int id, String nombre, String apellido, String email, Date fecha_naci,
+      String foto) {
+    String message = "";
+    Session session = crearSesion();
+    try {
+      Persona persona = session.find(Persona.class, id);
+      persona.setNombre(nombre);
+      persona.setApellido(apellido);
+      persona.setEmail(email);
+      persona.setFecha_nacimiento(fecha_naci);
+      persona.setFoto(foto);
+
+      session.merge(persona);
+      session.getTransaction().commit();
+      session.close();
+      message = "Persona actualizada con éxito";
+    } catch (Exception e) {
+      e.printStackTrace();
+      message = e.getMessage();
+    }
+    return message;
   }
 
 }
