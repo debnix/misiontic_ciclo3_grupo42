@@ -45,6 +45,19 @@ public class PersonaController {
     return create;
   }
 
+  public String obtenerPersonaXId(int id) {
+    String personaStr = "";
+    Session session = crearSesion();
+    try {
+      Persona persona = session.find(Persona.class, id);
+      personaStr = persona.toString();
+      session.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return personaStr;
+  }
+
   public List<String> obtenerPersonas() {
     List<Persona> personas = new ArrayList<>();
     Session session = crearSesion();
