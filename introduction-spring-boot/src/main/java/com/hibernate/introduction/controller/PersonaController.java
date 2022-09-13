@@ -1,153 +1,62 @@
 package com.hibernate.introduction.controller;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.hibernate.introduction.model.Persona;
+import com.hibernate.introduction.services.PersonaService;
 
 @RestController
 @RequestMapping("/personas")
 public class PersonaController {
+
   // Atributos
-  private SessionFactory factory;
+  PersonaService service;
 
   // Constructor
   public PersonaController() {
-    // Crear objeto que permita fabricar sesiones
-    factory = new Configuration()
-        .configure("cfg.xml")
-        .addAnnotatedClass(Persona.class)
-        .buildSessionFactory();
-  }
-
-  /*
-   * @GetMapping
-   * public String holaMundo() {
-   * return "Hola mundo utilizando Spring boot";
-   * }
-   */
-
-  private Session crearSesion() {
-    Session session = factory.openSession();
-    session.beginTransaction();
-    return session;
+    service = new PersonaService();
   }
 
   /** ACCIONES */
-
+  @CrossOrigin(origins = "http://localhost:5500")
   @GetMapping
   public List<Persona> obtenerPersonas() {
-    List<Persona> personas = new ArrayList<>();
-    Session session = crearSesion();
-    try {
-      personas = session.createQuery("from Persona", Persona.class).list();
-      session.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return personas;
+    return service.obtenerPersonas();
+  }
+
+  @GetMapping("/{id}")
+  public Persona obtenerPersonaXId(@PathVariable(name = "id") int id) {
+    return service.obtenerPersonaXId(id);
+  }
+
+  @GetMapping("/commons")
+  public List<Persona> obtenerPersonasXnombreApellido(@RequestParam String nombre, @RequestParam String apellido) {
+    return service.obtenerPersonasXnombreApellido(nombre, apellido);
   }
 
   @PostMapping
   public String crearPersona(@RequestBody Persona persona) {
-    String message = "";
-    Session session = crearSesion();
-    try {
-      session.persist(persona);
-      session.getTransaction().commit();
-      message = "Persona creada con éxito";
-      session.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-      message = e.getMessage();
-    }
-
-    return message;
+    return service.crearPersona(persona);
   }
 
   @PutMapping
   public String actualizarPersona(@RequestBody Persona persona) {
-    String message = "";
-    Session session = crearSesion();
-    try {
-      /*
-       * Persona persona = session.find(Persona.class, id);
-       * persona.setNombre(nombre);
-       * persona.setApellido(apellido);
-       * persona.setEmail(email);
-       * persona.setFecha_nacimiento(fecha_naci);
-       * persona.setFoto(foto);
-       */
-
-      session.merge(persona);
-      session.getTransaction().commit();
-      session.close();
-      message = "Persona actualizada con éxito";
-    } catch (Exception e) {
-      e.printStackTrace();
-      message = e.getMessage();
-    }
-    return message;
+    return service.actualizarPersona(persona);
   }
 
-  @DeleteMapping
-  public String eliminarPersona(@RequestBody Persona persona) {
-    String message = "";
-    Session session = crearSesion();
-    try {
-      session.remove(persona);
-      session.getTransaction().commit();
-      session.close();
-      message = "Persona eliminada con éxito";
-    } catch (Exception e) {
-      message = e.getMessage();
-    }
-    return message;
+  @DeleteMapping("/{id}")
+  public String eliminarPersona(@PathVariable(name = "id") int id) {
+    return service.eliminarPersona(id);
   }
-
-  public String obtenerPersonaXId(int id) {
-    String personaStr = "";
-    Session session = crearSesion();
-    try {
-      Persona persona = session.find(Persona.class, id);
-      personaStr = persona.toString();
-      session.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return personaStr;
-  }
-
-  public List<String> objToString(List<Persona> personas) {
-    List<String> personasStr = new ArrayList<>();
-    for (int i = 0; i < personas.size(); i++) {
-      personasStr.add(personas.get(i).toString());
-    }
-    return personasStr;
-  }
-
-  public Calendar StringToCalendar(String fecha) {
-    String[] dateString = fecha.split("/");
-    int year = Integer.parseInt(dateString[2]);
-    int month = Integer.parseInt(dateString[1]) - 1;
-    int date = Integer.parseInt(dateString[0]);
-    Calendar fechaCalendar = Calendar.getInstance();
-    fechaCalendar.set(year, month, date);
-    return fechaCalendar;
-  }
-
 }
