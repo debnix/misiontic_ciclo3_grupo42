@@ -24,6 +24,10 @@ function show_users (users) {
         <td>${users[i].apellido}</td>
         <td>${users[i].email}</td>
         <td>${arrayDate[0]}</td>
+        <td>
+          <button class="btn btn-warning">Actualizar</button>
+          <button class="btn btn-danger">Eliminar</button>
+        </td>
       </tr>
     `
   }
