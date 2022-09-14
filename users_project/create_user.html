@@ -43,7 +43,7 @@
 		<main>
 			<section id="section-form">
 				<!--Formulario-->
-				<form>
+				<form onsubmit="get_data_form(event)">
 					<!--Nombre-->
 					<label for="input_nombre" class="form-label">Nombre*: </label>
 					<input
@@ -51,7 +51,7 @@
 						class="form-control"
 						type="text"
 						placeholder="Pepito"
-						required
+						name="nombre"
 					/>
 					<!--Apellido-->
 					<label for="input_apellido" class="form-label">Apellido*: </label>
@@ -60,7 +60,7 @@
 						class="form-control"
 						type="text"
 						placeholder="Perez"
-						required
+						name="apellido"
 					/>
 					<!--Email-->
 					<label for="input_email" class="form-label">Email*: </label>
@@ -69,7 +69,7 @@
 						class="form-control"
 						type="email"
 						placeholder="pepito@gmail.com"
-						required
+						name="email"
 					/>
 					<!--Fecha nacimiento-->
 					<label for="input_fecha_naci" class="form-label">
@@ -79,7 +79,7 @@
 						id="input_fecha_naci"
 						class="form-control"
 						type="date"
-						required
+						name="fecha_nacimiento"
 					/>
 					<!--Foto-->
 					<label for="input_foto" class="form-label">Foto: </label>
@@ -88,6 +88,7 @@
 						class="form-control"
 						type="text"
 						placeholder="http://url-mi-foto.jpg"
+						name="foto"
 					/>
 					<!--Ejercicio: centrar el botón-->
 					<div class="container-center">
@@ -97,5 +98,8 @@
 				</form>
 			</section>
 		</main>
+
+		<!----Cargar scripts----->
+		<script src="./scripts/form.js"></script>
 	</body>
 </html>
