@@ -1,3 +1,4 @@
+const url = "http://localhost:8080/personas"
 
 async function get_users (url) {
   // Enviar petición
@@ -15,6 +16,7 @@ function show_users (users) {
   // Iterar users
   for (let i = 0; i < users.length; i++) {
     const arrayDate = users[i].fecha_nacimiento.split("T")
+    const obj = JSON.stringify(users[i])
     tbody += `
       <tr>
         <td>
@@ -25,7 +27,7 @@ function show_users (users) {
         <td>${users[i].email}</td>
         <td>${arrayDate[0]}</td>
         <td>
-          <button class="btn btn-warning">Actualizar</button>
+          <button class="btn btn-warning" onclick='update(${obj})'>Actualizar</button>
           <button class="btn btn-danger">Eliminar</button>
         </td>
       </tr>
@@ -35,8 +37,23 @@ function show_users (users) {
   table.innerHTML += tbody
 }
 
+async function update (persona) {
+  persona.nombre = "Nombre actualizado"
+  persona.apellido = "Apellido actualizado"
+  console.table(persona)
+  const resp = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(persona)
+  })
+  const text = await resp.text()
+  alert(text)
+}
+
 async function main () {
-  const url = "http://localhost:8080/personas"
   const users = await get_users(url)
   show_users(users)
 }
