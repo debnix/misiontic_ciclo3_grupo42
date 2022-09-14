@@ -29,7 +29,6 @@ public class PersonaController {
   }
 
   /** ACCIONES */
-  @CrossOrigin(origins = "http://localhost:5500")
   @GetMapping
   public List<Persona> obtenerPersonas() {
     return service.obtenerPersonas();
@@ -51,6 +50,7 @@ public class PersonaController {
   }
 
   @PutMapping
+  @CrossOrigin("*")
   public String actualizarPersona(@RequestBody Persona persona) {
     return service.actualizarPersona(persona);
   }
