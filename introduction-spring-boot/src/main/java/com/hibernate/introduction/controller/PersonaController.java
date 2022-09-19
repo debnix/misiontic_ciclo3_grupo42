@@ -56,6 +56,7 @@ public class PersonaController {
   }
 
   @DeleteMapping("/{id}")
+  @CrossOrigin("*")
   public String eliminarPersona(@PathVariable(name = "id") int id) {
     return service.eliminarPersona(id);
   }
