@@ -47,8 +47,8 @@ async function create (persona) {
 }
 
 async function update (persona) {
-  persona.nombre = "Nombre actualizado"
-  persona.apellido = "Apellido actualizado"
+  persona.nombre = persona.nombre
+  persona.apellido = persona.apellido
   console.table(persona)
   const resp = await fetch(URL_API, {
     method: 'PUT',
