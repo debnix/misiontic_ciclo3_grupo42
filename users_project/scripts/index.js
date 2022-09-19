@@ -1,5 +1,7 @@
 const url = "http://localhost:8080/personas"
 
+let ID_DELETE = -1
+
 async function get_users (url) {
   // Enviar petición
   const resp = await fetch(url, {
@@ -28,7 +30,7 @@ function show_users (users) {
         <td>${arrayDate[0]}</td>
         <td>
           <button class="btn btn-warning" onclick='update(${obj})'>Actualizar</button>
-          <button class="btn btn-danger" onclick='delete_person(${users[i].id})'>Eliminar</button>
+          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick='btn_delete(${obj})'>Eliminar</button>
         </td>
       </tr>
     `
@@ -37,12 +39,15 @@ function show_users (users) {
   table.innerHTML = tbody
 }
 
-async function delete_person (id) {
-  const resp = await fetch(`${url}/${id}`, {
+function btn_delete (persona) {
+  document.getElementById("span-person").innerText = persona.nombre + " " + persona.apellido
+  ID_DELETE = persona.id
+}
+
+async function delete_person () {
+  await fetch(`${url}/${ID_DELETE}`, {
     method: 'DELETE'
   })
-  const text = await resp.text()
-  alert(text)
   main()
 }
 
