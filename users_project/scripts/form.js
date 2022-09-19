@@ -1,5 +1,9 @@
 
 const URL_API = "http://localhost:8080/personas"
+const UPDATE_FLAG = {
+  update: false,
+  id: null
+}
 
 function get_data_form (evt) {
   // Indicar al evento que no recargue página
@@ -11,8 +15,12 @@ function get_data_form (evt) {
     fecha_nacimiento: evt.target.fecha_nacimiento.value,
     foto: evt.target.foto.value
   }
-  console.table(persona)
-  send_data(persona)
+  if (UPDATE_FLAG.update) {
+    persona.id = UPDATE_FLAG.id
+    update(persona)
+  } else {
+    create(persona)
+  }
   clear_input(evt.target)
 }
 
@@ -24,7 +32,7 @@ function clear_input (form) {
   form.foto.value = ""
 }
 
-async function send_data (persona) {
+async function create (persona) {
   // Enviar petición
   const resp = await fetch(URL_API, {
     method: 'POST',
@@ -42,7 +50,7 @@ async function update (persona) {
   persona.nombre = "Nombre actualizado"
   persona.apellido = "Apellido actualizado"
   console.table(persona)
-  const resp = await fetch(url, {
+  const resp = await fetch(URL_API, {
     method: 'PUT',
     headers: {
       'Accept': 'application/json',
@@ -53,3 +61,29 @@ async function update (persona) {
   const text = await resp.text()
   alert(text)
 }
+
+function get_params_url () {
+  const params = window.location.search
+  if (params) {
+    const url = new URLSearchParams(params)
+    const persona = JSON.parse(url.get("persona"))
+    console.table(persona)
+    set_data_form(persona)
+    document.getElementById("btn").innerText = "Actualizar"
+    UPDATE_FLAG.update = true
+    UPDATE_FLAG.id = persona.id
+  }
+
+}
+
+function set_data_form (persona) {
+  const arrayFecha = persona.fecha_nacimiento.split("T")
+  console.log(arrayFecha)
+  document.getElementById("input_nombre").setAttribute("value", persona.nombre)
+  document.getElementById("input_apellido").setAttribute("value", persona.apellido)
+  document.getElementById("input_email").setAttribute("value", persona.email)
+  document.getElementById("input_fecha_nacimiento").setAttribute("value", arrayFecha[0])
+  document.getElementById("input_foto").setAttribute("value", persona.foto)
+}
+
+get_params_url()
