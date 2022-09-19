@@ -38,19 +38,7 @@ function show_users (users) {
 }
 
 async function update (persona) {
-  persona.nombre = "Nombre actualizado"
-  persona.apellido = "Apellido actualizado"
-  console.table(persona)
-  const resp = await fetch(url, {
-    method: 'PUT',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(persona)
-  })
-  const text = await resp.text()
-  alert(text)
+  window.location.href = `form.html?persona=${JSON.stringify(persona)}`
 }
 
 async function main () {

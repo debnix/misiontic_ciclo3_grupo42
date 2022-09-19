@@ -37,3 +37,19 @@ async function send_data (persona) {
   const text = await resp.text()
   alert(text)
 }
+
+async function update (persona) {
+  persona.nombre = "Nombre actualizado"
+  persona.apellido = "Apellido actualizado"
+  console.table(persona)
+  const resp = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(persona)
+  })
+  const text = await resp.text()
+  alert(text)
+}
