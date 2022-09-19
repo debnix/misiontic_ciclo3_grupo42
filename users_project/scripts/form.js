@@ -60,6 +60,7 @@ async function update (persona) {
   })
   const text = await resp.text()
   alert(text)
+  window.location.href = "index.html"
 }
 
 function get_params_url () {
